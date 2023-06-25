@@ -1,7 +1,23 @@
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { Header,Row } from 'src/components'
+import { useEffect } from 'react'
+import { Header,Hero,Row } from 'src/components'
+import { IMove } from 'src/interfaces/app.interfaces'
+import { API_REQUEST } from 'src/services/api.services'
 
-export default function Home() {
+export default function Home({tranding}:HomeProps):JSX.Element {
+
+
+
+  // useEffect(()=>{
+  //   fetch(API_REQUEST.trending)
+  //   .then(res=>res.json())
+  //   .then(data=>console.log(data)
+  //   ).catch(data=>console.log('api xato')
+  //   );
+
+  // },[])
+
   return (
     <div className='relative h-[200vh]'>
       <Head>
@@ -10,12 +26,36 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.svg " />
       </Head>
-      <Header/>
-     <main>
+      <Header /> 
+     <main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
+      <Hero tranding={tranding}/>
       <section>
 
        </section>
      </main>
     </div>
   )
+}
+
+export const getServerSideProps:GetServerSideProps<HomeProps>=async()  =>{
+  const tranding=await fetch(API_REQUEST.trending).then(res=>res.json());
+      // if(tranding.results.length)
+      // {
+      //   //1
+      //   return {
+      //   //  redirect:{
+      //   //   destination:"/account",
+      //   //  }
+      //   //2
+      //     notFound:true
+      //   }
+      // }
+  return {
+  props:{
+    tranding:tranding.results,
+  },
+}
+};
+interface HomeProps {
+  tranding:IMove[];
 }
