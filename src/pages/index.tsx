@@ -5,7 +5,9 @@ import { Header,Hero,Row } from 'src/components'
 import { IMove } from 'src/interfaces/app.interfaces'
 import { API_REQUEST } from 'src/services/api.services'
 
-export default function Home({tranding}:HomeProps):JSX.Element {
+export default function Home({tranding,topRated}:HomeProps):JSX.Element {
+  console.log(topRated);
+  
 
 
 
@@ -30,7 +32,7 @@ export default function Home({tranding}:HomeProps):JSX.Element {
      <main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
       <Hero tranding={tranding}/>
       <section>
-
+          <Row title='Top Rated' movies={topRated}/>
        </section>
      </main>
     </div>
@@ -39,6 +41,8 @@ export default function Home({tranding}:HomeProps):JSX.Element {
 
 export const getServerSideProps:GetServerSideProps<HomeProps>=async()  =>{
   const tranding=await fetch(API_REQUEST.trending).then(res=>res.json());
+  const topRated=await fetch(API_REQUEST.top_rtted).then(res=>res.json());
+
       // if(tranding.results.length)
       // {
       //   //1
@@ -53,9 +57,13 @@ export const getServerSideProps:GetServerSideProps<HomeProps>=async()  =>{
   return {
   props:{
     tranding:tranding.results,
+    topRated:topRated.results,
   },
 }
 };
+
+
 interface HomeProps {
   tranding:IMove[];
+  topRated:IMove[]
 }
