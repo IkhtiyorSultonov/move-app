@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import {VscAccount}from "react-icons/vsc"
-import {AiOutlineSearch} from "react-icons/ai"
+import {AiOutlineSearch,} from "react-icons/ai"
+import {RxExit} from "react-icons/rx"
 import {BiBellMinus} from "react-icons/bi"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "src/context/auth.context";
 const Header = () => {
   const [scrolled, setscrolled] = useState(false)
+  const {logOut}=useContext(AuthContext)
 
   useEffect(()=>{
     const handleScroll =()=>{
@@ -43,6 +46,7 @@ const Header = () => {
           <Link href={"/account"}>
           <VscAccount className="h-6 w-6 cursor-pointer"/>
           </Link>
+          <RxExit  className="h-6 w-6 cursor-pointer" onClick={logOut}/>
       </div>
     </header>
   );

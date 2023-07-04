@@ -1,14 +1,18 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { Header,Hero,Row } from 'src/components'
+import { AuthContext } from 'src/context/auth.context'
 import { IMove } from 'src/interfaces/app.interfaces'
 import { API_REQUEST } from 'src/services/api.services'
 
 export default function Home({tranding,topRated,TvTopRated ,popular,cartoon,horor}:HomeProps):JSX.Element {
   // console.log(topRated);
   
-
+const {isLoading}=useContext(AuthContext)
+{
+  if(isLoading)return <>Loading...</>;
+}
 
 
   // useEffect(()=>{

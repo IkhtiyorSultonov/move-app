@@ -1,17 +1,36 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Formik, Form } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { TextFeild } from "src/components";
+import { AuthContext } from 'src/context/auth.context';
 import *as yup from 'yup';
+import { useRouter } from "next/router";
 
 const Auth = () => {
   const [auth, setAuth] = useState<"signup" | "signin">("signin");
+  const {error, isLoading, signIn, signUp, user } = useContext(AuthContext);
+
+  const router=useRouter();
+  if(user)router.push('/')
+  if(!isLoading)return<>Loading...</>;
   const toggleAuth = (state: "signup" | "signin") => {
     setAuth(state);
   };
   const onSubmit = (FormData:{email:string,password:string}) => {
-    console.log(FormData);
+    if(auth==='signup')
+    {
+     
+      signUp(FormData.email,FormData.password)
+    
+      
+    }
+    else{
+     
+      signIn(FormData.email,FormData.password)
+    }
+    // console.log(FormData);
+    
   };
 
   const validation=yup.object({
@@ -43,11 +62,12 @@ password:yup.string().min(6,"6 minium charter").required('password is requried')
         className=" absolute left-4 top-4 cursor-pointer object-contain"
       />
       <div className=" p-5 relative mt-24 space-y-8 rounded md:mx-14 w-full bg-black/75 py-10 md:mt-0 md:max-w-md ">
+        <Formik initialValues={{ email:'', password: '' }} onSubmit={onSubmit} validationSchema={validation}>
+          <Form className=" space-y-4">
         <h1 className=" text-4xl font-semibold py-4">
           {auth === "signin" ? "Sign Up" : "Sign In"}
         </h1>
-        <Formik initialValues={{ email:'', password: '' }} onSubmit={onSubmit} validationSchema={validation}>
-          <Form className=" space-y-4">
+       {error && <p className="text-red-500 font-semibold text-center ">{error}</p>}
             <div className="space-y-4  ">
               <TextFeild name="email" placeholder="Email" type={'text'} />
               <TextFeild
@@ -56,21 +76,15 @@ password:yup.string().min(6,"6 minium charter").required('password is requried')
                 type={'password'}
               />
             </div>
-            {auth === "signup" ? (
+         
               <button
-                type="submit"
-                className="w-full  bg-[#E10856] mt-4 py-3 font-semibold"
+                type="submit" disabled={isLoading}
+                className={`w-full  bg-[#E10856] mt-4 py-3 font-semibold`}
               >
-                Sign In
+                {isLoading?'Loading..':auth ==='signin'? 'Sign In':'Sign Up'}
+            
               </button>
-            ) : (
-              <button
-                type="submit"
-                className="w-full  bg-[#E10856] mt-4 py-3 font-semibold"
-              >
-                Sign Up
-              </button>
-            )}
+         
           </Form>
         </Formik>
         {auth === "signin" ? (
