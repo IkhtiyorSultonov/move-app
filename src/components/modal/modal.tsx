@@ -1,7 +1,7 @@
 import MuiModal from "@mui/material/Modal";
 import { useInfoStore } from "src/store";
 import { GrClose } from "react-icons/gr";
-import { FaPlay } from "react-icons/fa";
+import { FaPlay ,FaPause} from "react-icons/fa";
 import {
   AiOutlineMinus,
   AiOutlinePlus,
@@ -27,6 +27,8 @@ const Modal = () => {
     setModal(false);
   };
   const [muted, setMuted] = useState<boolean>(true);
+  const [palying, setpalying] = useState<boolean>(false)
+  const [volume, setvolume] = useState<number>()
 
   useEffect(() => {
     const fetchVideoData = async () => {
@@ -56,7 +58,7 @@ const Modal = () => {
       <>
         <button
           onClick={hanleclose}
-          className="modalButton text-[20px] absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#fff]"
+          className="modalButton1 hover:text-[#fff] text-[20px] absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#fff]"
         >
           <GrClose />
         </button>
@@ -66,18 +68,23 @@ const Modal = () => {
             style={{ position: "absolute", top: "0", left: "0" }}
             width={"100%"}
             height={"100%"}
-            playing
+            playing={palying}
             muted={muted}
+            volume1={volume}
             className="absolute top-0, left-0"
+
           />
 
-          <div className=" absolute bottom-10 flex w-full items-center justify-between px-10">
+          <div className=" absolute bottom-10 left-10 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
-              <button className="flex items-center rounded bg-white px-8 py-2 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
-                <FaPlay className="h-7 w-7 text-black" />
+              <button  onClick={()=>setpalying((play)=>!play)} className="modalButton ">
+               {palying?<FaPause className="h-7 w-7 "/>: <FaPlay className="h-7 w-7 "/>}
               </button>
-              <button className="modalButton">
-                <AiOutlineMinus />
+              <button onClick={()=>setvolume(0)} className="modalButton">
+              <AiOutlineMinus />
+              </button>
+              <button onClick={()=>setvolume(1)} className="modalButton">
+              <AiOutlinePlus />
               </button>
               <button className="modalButton">
                 <AiOutlineLike className="w-7 h-7" />

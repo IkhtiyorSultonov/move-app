@@ -18,7 +18,7 @@ const Auth = () => {
 
     const router=useRouter();
 	if(user) router.push('/');
-	if(isLoading) return <>{null}</>;
+	
   const onSubmit = (FormData:{email:string,password:string}) => {
     if(auth==='signup')
     {
