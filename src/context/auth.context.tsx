@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useEffect, useMemo,useState } from "react";
-import { User, onAuthStateChanged } from 'firebase/auth';
+import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
+import { User, onAuthStateChanged } from "firebase/auth";
 
 import { useAuth } from "src/hooks/useAuth";
 import { auth } from "src/Firebase";
@@ -22,9 +22,18 @@ export const AuthContext = createContext<authContextState>({
   logOut: async () => {},
 });
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-    const [intial, setIntial] = useState<boolean>(true)
-const { error, isLoading, logOut, signIn, signUp, user ,setUser,setIsLoading} = useAuth();
-const router=useRouter()
+  const [intial, setIntial] = useState<boolean>(true);
+  const {
+    error,
+    isLoading,
+    logOut,
+    signIn,
+    signUp,
+    user,
+    setUser,
+    setIsLoading,
+  } = useAuth();
+  const router = useRouter();
   const value = useMemo(
     () => ({
       user,
@@ -38,27 +47,31 @@ const router=useRouter()
     // eslint-disable-next-line
     [user, isLoading, error]
   );
-  useEffect(()=>onAuthStateChanged(auth,user=>{
-    if(user)
-    {
-        //ruyhatdan utgan
-        setIsLoading(false)
-        setUser(user)
-    }
-    else
-    {
-         //ruyhatdan utmagan
-         setUser(null)
-         setIsLoading(true)
-        router.push('/auth')
-    }
-    setIntial(false)
-    setIsLoading(false)
-  }),[
-    
-//eslint-disable-next-line
-  ]);
-  return <AuthContext.Provider value={value}>{!intial? children:"Loading..."}</AuthContext.Provider>;
+  useEffect(
+    () =>
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          //ruyhatdan utgan
+          setIsLoading(false);
+          setUser(user);
+        } else {
+          //ruyhatdan utmagan
+          setUser(null);
+          setIsLoading(true);
+          router.push('/auth');
+        }
+        setIntial(false);
+        setIsLoading(false);
+      }),
+    [
+      //eslint-disable-next-line
+    ]
+  );
+  return (
+    <AuthContext.Provider value={value}>
+      {!intial ? children : "Loading..."}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthContextProvider;

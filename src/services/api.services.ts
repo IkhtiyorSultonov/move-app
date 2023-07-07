@@ -7,7 +7,8 @@ export const  API_REQUEST={
     tv_top_rated:`${base_url}/tv/top_rated?api_key=${base_key}&language=en-US`,
     popular:`${base_url}/movie/popular?api_key=${base_key}&language=en-US`,
     cartoon:`${base_url}/discover/movie?api_key=${base_key}&language=en-US&with_genres=16`,
-    horor:`${base_url}/discover/movie?api_key=${base_key}&language=en-US&with_genres=27`
+    horor:`${base_url}/discover/movie?api_key=${base_key}&language=en-US&with_genres=27`,
+   
 };
 
 

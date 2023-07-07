@@ -3,12 +3,22 @@ import Image from 'next/image'
 import { ThumbnullProps } from './thumbnull.props'
 import { image_base } from 'src/helpers/contains'
 import ReactStarts from 'react-stars';
+import { useInfoStore } from 'src/store';
 
 const Thumbnull = ({movie, isBig=false}:ThumbnullProps):JSX.Element => {
-    console.log(movie);
     
+
+    const {setModal,setCurrentMovie}=useInfoStore();
+    
+    const handleCurrentMovie=()=>{
+      setModal(true),
+      setCurrentMovie(movie)
+    }
   return (
-    <div className={` relative ${isBig?" md:h-[550px] h-[400px] bottom-[100px] min-w-[400px] md:min-w-[500px] ":"h-[330px] md:h-[440px]"  } min-w-[200px] md:min-w-[292px] cursor-pointer transition duration-200 ease-out md:h-[440px]  md:hover:scale-110`}>
+
+    <div 
+    onClick={handleCurrentMovie}
+    className={` relative ${isBig?" md:h-[550px] h-[400px] bottom-[100px] min-w-[400px] md:min-w-[500px] ":"h-[330px] md:h-[440px]"  } min-w-[200px] md:min-w-[292px] cursor-pointer transition duration-200 ease-out md:h-[440px]  md:hover:scale-110`}>
         <Image  className=' rounded-sm md:rounded  object-cover'  src={`${image_base}${movie?.backdrop_path || movie?.poster_path}`}
           alt={movie?.title}
           fill/>

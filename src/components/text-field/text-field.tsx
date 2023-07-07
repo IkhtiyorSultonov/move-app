@@ -5,11 +5,6 @@ import {useField,FieldHookConfig,ErrorMessage} from "formik"
 const  TextFeild = ({...props}:TextFeildProps & FieldHookConfig<string>) => {
     const [field, meta, helpers] =useField(props)
  
-  
-    
-
-   
-    
 
   return (
  

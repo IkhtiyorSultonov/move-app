@@ -11,12 +11,14 @@ const Auth = () => {
   const [auth, setAuth] = useState<"signup" | "signin">("signin");
   const {error, isLoading, signIn, signUp, user } = useContext(AuthContext);
 
-  const router=useRouter();
-  if(user)router.push('/')
-  if(!isLoading)return<>Loading...</>;
+
   const toggleAuth = (state: "signup" | "signin") => {
     setAuth(state);
   };
+
+    const router=useRouter();
+	if(user) router.push('/');
+	if(isLoading) return <>{null}</>;
   const onSubmit = (FormData:{email:string,password:string}) => {
     if(auth==='signup')
     {

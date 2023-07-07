@@ -17,4 +17,8 @@ export interface IMove {
     name:string
     original_name:string
   }
+
+  export interface Element {
+    type :"Trailer"|'Clip'|"Opening Credits";
+  }
   

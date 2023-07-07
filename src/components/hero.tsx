@@ -5,15 +5,20 @@ import Image from "next/image";
 import ReactStarts from "react-stars";
 import { image_base } from "src/helpers/contains";
 import { TbPlayerPlayFilled } from "react-icons/tb";
+import { useInfoStore } from "src/store";
 
 const Hero = ({ tranding }: HeroProps): JSX.Element => {
-  console.log(tranding);
-  const [movie, setmovie] = useState<IMove>({} as IMove);
 
+  const [movie, setmovie] = useState<IMove>({} as IMove);
+  const {setModal,setCurrentMovie}=useInfoStore()
+  const handleCurrentMovie=()=>{
+    setModal(true),
+    setCurrentMovie(movie)
+  }
   useEffect(() => {
     const randomMovie = tranding[Math.floor(Math.random() * tranding.length)];
 
-    console.log(randomMovie);
+   
 
     setmovie(randomMovie);
   }, [tranding]);
@@ -47,7 +52,7 @@ const Hero = ({ tranding }: HeroProps): JSX.Element => {
       </p>
 
       <div>
-        <button className="bg-white/60 font-bold  space-x-2 flex justify-center items-center text-black bg w-[200px] h-[56px] rounded-full ">
+        <button onClick={handleCurrentMovie} className="bg-white/60 font-bold  space-x-2 flex transition-all hover:bg-white/80 justify-center items-center text-black bg w-[200px] h-[56px] rounded-full ">
           <TbPlayerPlayFilled className="h-5 w-5 md:h8 md:w-8" />
           Watch Now
         </button>
