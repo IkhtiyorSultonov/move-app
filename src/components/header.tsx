@@ -4,11 +4,12 @@ import { VscAccount } from "react-icons/vsc";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RxExit } from "react-icons/rx";
 import { BiBellMinus } from "react-icons/bi";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "src/context/auth.context";
+import {  useEffect, useState } from "react";
+import { useAuth } from "src/hooks/useAuth";
+import NavMenu from "./nav-menu/navmenu";
 const Header = () => {
   const [scrolled, setscrolled] = useState(false);
-  const { logOut } = useContext(AuthContext);
+  const { logOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +23,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <header className={`${scrolled && "bg-[#E10856]"}`}>
+    <header className={`${scrolled && "bg-[#000000]/50"}`}>
       <div className="flex item-center  space-x-2  md:space-x-10">
         <Image
           src={"/logo.svg"}
@@ -31,6 +32,7 @@ const Header = () => {
           height={56}
           className="cursor-pointer object-contain"
         />
+        <NavMenu/>
         <ul className="ul items-center space-x-4 md:flex hidden">
           <li>Home</li>
           <li>Movies</li>

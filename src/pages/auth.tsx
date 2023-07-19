@@ -6,35 +6,28 @@ import { TextFeild } from "src/components";
 import { AuthContext } from 'src/context/auth.context';
 import *as yup from 'yup';
 import { useRouter } from "next/router";
+import { useAuth } from "src/hooks/useAuth";
+import { GetServerSideProps } from "next";
 
 const Auth = () => {
   const [auth, setAuth] = useState<"signup" | "signin">("signin");
-  const {error, isLoading, signIn, signUp, user } = useContext(AuthContext);
+  const {error, isLoading, signIn, signUp, user,setIsLoading} = useAuth();
 
 
   const toggleAuth = (state: "signup" | "signin") => {
     setAuth(state);
   };
 
-    const router=useRouter();
-	if(user) router.push('/');
-	
-  const onSubmit = (FormData:{email:string,password:string}) => {
-    if(auth==='signup')
-    {
+	  const onSubmit = async (formData: { email: string; password: string }) => {
+		if (auth === 'signup') {
      
-      signUp(FormData.email,FormData.password)
-    
-      
-    }
-    else{
-     
-      signIn(FormData.email,FormData.password)
-    }
-    // console.log(FormData);
-    
-  };
+			signUp(formData.email, formData.password);
+		} else {
+			signIn(formData.email, formData.password);
+		}
+	};
 
+      
   const validation=yup.object({
 email:yup.string().email().required('Email is requried'),
 password:yup.string().min(6,"6 minium charter").required('password is requried')
@@ -117,5 +110,17 @@ password:yup.string().min(6,"6 minium charter").required('password is requried')
     </div>
   );
 };
-
 export default Auth;
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+	const user_id = req.cookies.user_id;
+
+	if (user_id) {
+		return {
+			redirect: { destination: '/', permanent: false },
+		};
+	}
+
+	return {
+		props: {},
+	};
+};

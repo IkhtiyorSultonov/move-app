@@ -23,8 +23,8 @@ const Row = ({ title, movies, isBig=false }: RowProps): JSX.Element => {
     }
   };
   return (
-    <div className="h-[600px] space-y-1 md:space-y-2 ">
-      <h2 className="w-56 cursor-pointer  text-3xl md:text-2x1   font-semibold text-[#e5e5e5] hover:text-white transition duration-200  ">
+    <div className="md:h-[600px] space-y-3 md:space-y-2 ">
+      <h2 className="w-56 cursor-pointer mt-4  text-lg md:text-2x1   font-semibold text-[#e5e5e5] hover:text-white transition duration-200  ">
         {title}
       </h2>
       {/* {} */}

@@ -1,3 +1,5 @@
+
+
 export interface IMove {
     adult: boolean
     backdrop_path: string
@@ -22,3 +24,58 @@ export interface IMove {
     type :"Trailer"|'Clip'|"Opening Credits";
   }
   
+  export interface Product {
+    default_price: {
+      id :string;
+      unit_amount:number
+    }
+    id:string;
+    images:string[];
+    metadata:{
+      adv:string;
+    }
+    name:string;
+  }
+
+  export interface Subscription {
+
+    default_payment_method: {
+      card: {
+        brand: string;
+        exp_month: number;
+        exp_year: number;
+        last4: number;
+      };
+    }
+    current_period_start: number;
+    id: string;
+    current_period_end: number;
+    plan: {
+      amount: true;
+      active: boolean;
+      nickname: string;
+    };
+    
+    customer: {
+      email: string;
+      invoice_settings:{
+        default_payment_method: {
+          card: {
+            brand: string;
+            exp_month: number;
+            exp_year: number;
+            last4: number;
+          };
+        };
+      }
+      metadata:{
+        user_id:string
+
+      }
+    };
+  }
+
+  export interface MyList {
+    userId:string;
+    product:IMove,
+  }

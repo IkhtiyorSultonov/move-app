@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
 import { User, onAuthStateChanged } from "firebase/auth";
-
 import { useAuth } from "src/hooks/useAuth";
 import { auth } from "src/Firebase";
 import { useRouter } from "next/router";
+import { boolean } from "yup";
 interface authContextState {
   user: User | null;
   error: string;
@@ -17,6 +17,7 @@ export const AuthContext = createContext<authContextState>({
   user: null,
   error: "",
   isLoading: false,
+  
   signIn: async () => {},
   signUp: async () => {},
   logOut: async () => {},
@@ -31,7 +32,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     signUp,
     user,
     setUser,
-    setIsLoading,
+ 
   } = useAuth();
   const router = useRouter();
   const value = useMemo(
@@ -42,6 +43,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       signIn,
       signUp,
       error,
+    
     }),
 
     // eslint-disable-next-line
@@ -52,16 +54,15 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           //ruyhatdan utgan
-          setIsLoading(false);
+        
           setUser(user);
         } else {
           //ruyhatdan utmagan
           setUser(null);
-          setIsLoading(true);
           router.push('/auth');
         }
         setIntial(false);
-        setIsLoading(false);
+    
       }),
     [
       //eslint-disable-next-line
@@ -69,7 +70,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   );
   return (
     <AuthContext.Provider value={value}>
-      {!intial ? children : "Loading..."}
+      {children}
     </AuthContext.Provider>
   );
 };
