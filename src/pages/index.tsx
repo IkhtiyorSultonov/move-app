@@ -25,7 +25,7 @@ export default function Home({
   const {user}=useContext(AuthContext)
   // useEffect(async () =>{
   // const mylist=await getList(user?.uid)
-  console.log(list);
+  // console.log(list);
   
   // },[])
   

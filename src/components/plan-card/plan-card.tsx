@@ -1,10 +1,11 @@
 import React from 'react'
-import { PlanCardProps } from './plan-card';
+
 import { RiVipCrown2Fill } from 'react-icons/ri';
 import { AiOutlineHourglass } from 'react-icons/ai';
 import { PiVideoFill } from 'react-icons/pi';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/auth.context';
+import { PlanCardProps } from './plan-cardProps';
 
 
 
