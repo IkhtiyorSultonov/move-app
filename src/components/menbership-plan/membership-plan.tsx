@@ -34,13 +34,13 @@ const membershipplan = ({ subscription }: MembershipPlanProps) => {
           {isloading ? "Loading..." : "  Cancel Membership"}
         </button>
       </div>
-      <div className="col-span-3">
+      <div className="col-span-3 ">
         <div className="flex flex-col justify-between border-b border-white/10 py-4 md:flex-row ">
-          <div>
+          <div className=" space-y-2">
             <p className="font-medium">{subscription.customer.email}</p>
-            <p className="text-[gray]">psswor:******</p>
+            <p className="text-[gray]">pssword:******</p>
           </div>
-          <div className="md:text-right">
+          <div className="md:text-right  space-y-2">
             <p onClick={openPortal} className={"MembershipLink"}>
               {" "}
               {isloading ? "Loading..." : "Change Email"}
@@ -53,7 +53,7 @@ const membershipplan = ({ subscription }: MembershipPlanProps) => {
         </div>
         <div className="flex flex-col justify-between pt-4 md:flex-row md:pb-0">
           <div>
-            <div className="flex flex-col gap-2 items-center">
+            <div className="flex flex-col gap-2 ">
               <p>
                 <span className="p-2 px-1  uppercase rounded bg-white/20">
                   {subscription.default_payment_method
@@ -75,7 +75,7 @@ const membershipplan = ({ subscription }: MembershipPlanProps) => {
               </p>
             </div>
           </div>
-          <div className="md:text-right">
+          <div className="md:text-right  space-y-2">
             {isloading ? (
               "Loading..."
             ) : (

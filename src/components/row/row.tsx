@@ -23,12 +23,12 @@ const Row = ({ title, movies, isBig=false }: RowProps): JSX.Element => {
     }
   };
   return (
-    <div className="md:h-[600px] space-y-3 md:space-y-2 ">
+    <div className="md:h-[600px] space-y-3 md:space-y-2  md:mt-0">
       <h2 className="w-56 cursor-pointer mt-4  text-lg md:text-2x1   font-semibold text-[#e5e5e5] hover:text-white transition duration-200  ">
         {title}
       </h2>
       {/* {} */}
-      <div className=" group relative md:ml-2:">
+      <div className=" group relative -ml-2 md:ml-2:">
         <AiOutlineArrowLeft
           onClick={() => handleClick("left")}
           className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-6 w-6 cursor-pointer opacity-0 group-hover:opacity-100 transi duration-200 scale-125 /*false*/ ${
@@ -38,7 +38,7 @@ const Row = ({ title, movies, isBig=false }: RowProps): JSX.Element => {
 
         <div
           ref={caruselRef}
-          className={`flex scrollbar-hide items-center ${!isBig && ' space-x-1 md:space-x-4'} overflow-hidden `}
+          className={`flex scrollbar-hide space-x-3 md:space-x-0 items-center ${!isBig && ' space-x-3 md:space-x-4'} overflow-hidden `}
         >
           {movies.map((movie) => (
             <Thumbnull key={movie.id} movie={movie} isBig={isBig} />
@@ -46,7 +46,7 @@ const Row = ({ title, movies, isBig=false }: RowProps): JSX.Element => {
         </div>
         <AiOutlineArrowRight
           onClick={() => handleClick("right")}
-          className={`absolute top-0 bottom-0 right-2 z-40 m-auto h-6 w-6 cursor-pointer opacity-0  group-hover:opacity-100 transi duration-200 scale-125 `}
+          className={`absolute top-0 bottom-0 right-2 z-40 m-auto h-6 w-6 cursor-pointer opacity-0  group-hover:opacity-100 transition duration-200 scale-125 `}
         />
       </div>
     </div>

@@ -24,15 +24,15 @@ const Hero = ({ tranding }: HeroProps): JSX.Element => {
   }, [tranding]);
 
   return (
-    <div className="flex flex-col space-y-2 py-20  md:space-y-4 lg:h-[65vh] lg:pb-12 lg:center">
-      <div className="absolute top-0 left-0 h-[95vh] -z-10 w-full">
+    <div className="flex flex-col space-y-3 py-20  md:space-y-4 lg:h-[65vh] lg:pb-12 lg:center">
+      <div className="absolute top-0 left-0 h-[55vh]  md:h-[95vh] -z-10 w-full">
         <Image
           src={`${image_base}${movie?.backdrop_path || movie?.poster_path}`}
           alt={movie?.title}
           fill
         />
       </div>
-      <div className="py-[4px] px-[8px] text-center rounded-bl-[8px] rounded-tr-[8px] bg-[#e5e5e5]/50 inline-block w-[111px]">
+      <div className=" mt-5 md:mt-0 py-[4px] px-[8px] text-center rounded-bl-[8px] rounded-tr-[8px] bg-[#e5e5e5]/50 inline-block w-[111px]">
         {movie.media_type}
       </div>
       <div className="flex items-centern space-x-2">
@@ -52,7 +52,7 @@ const Hero = ({ tranding }: HeroProps): JSX.Element => {
       </p>
 
       <div>
-        <button onClick={handleCurrentMovie} className="bg-white/60 font-bold  space-x-2 flex transition-all hover:bg-white/80 justify-center items-center text-black bg w-[200px] h-[56px] rounded-full ">
+        <button onClick={handleCurrentMovie} className="bg-white/60 font-bold  space-x-2 flex transition-all hover:bg-white/80 justify-center items-center text-black bg mt-3 md:mt-0 w-[150px] h-[40px] md:w-[200px] md:h-[56px] rounded-full ">
           <TbPlayerPlayFilled className="h-5 w-5 md:h8 md:w-8" />
           Watch Now
         </button>

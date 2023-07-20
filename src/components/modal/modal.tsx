@@ -104,7 +104,7 @@ const Modal = () => {
     <MuiModal
       open={modal}
       onClose={hanleclose}
-      className=" fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll scrollbar-hide"
+      className=" mt-[50px] md:mt-auto fixed !top-7 pl-2 pr-2  md:pl-0 md:pr-0 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll scrollbar-hide"
     >
       <>
         <Snackbar
@@ -121,7 +121,7 @@ const Modal = () => {
         >
           <GrClose />
         </button>
-        <div className=" relative pt-[55%]">
+        <div className=" relative md:pt-[55%] pt-[60%] ">
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailer}`}
             style={{ position: "absolute", top: "0", left: "0" }}
@@ -133,16 +133,16 @@ const Modal = () => {
             className="absolute top-0, left-0"
           />
 
-          <div className=" absolute bottom-10 left-10 flex w-full items-center justify-between px-10 ">
+          <div className=" absolute top-[180px] md:top-auto bottom-10  md:left-10 flex w-full items-center justify-between px-10 ">
             <div className="flex space-x-2">
               <button
                 onClick={() => setpalying((play) => !play)}
                 className="modalButton "
               >
                 {palying ? (
-                  <FaPause className="h-7 w-7 " />
+                  <FaPause className="mobile  " />
                 ) : (
-                  <FaPlay className="h-7 w-7 " />
+                  <FaPlay className="mobile  " />
                 )}
               </button>
 
@@ -150,10 +150,10 @@ const Modal = () => {
                 {loading ? "..." : <AiOutlinePlus />}
               </button>
               <button className="modalButton">
-                <AiOutlineLike className="w-7 h-7" />
+                <AiOutlineLike className="mobile" />
               </button>
               <button className="modalButton">
-                <AiOutlineDislike className="w-7 h-7" />
+                <AiOutlineDislike className="mobile " />
               </button>
             </div>
             <button
@@ -161,9 +161,9 @@ const Modal = () => {
               onClick={() => setMuted((prev) => !prev)}
             >
               {muted ? (
-                <BsVolumeMute className="w-7 h-7" />
+                <BsVolumeMute className="mobile " />
               ) : (
-                <AiFillSound className="w-7 h-7" />
+                <AiFillSound className="mobile " />
               )}
             </button>
           </div>
@@ -182,7 +182,8 @@ const Modal = () => {
             </div>
 
             <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
-              <p className="w-5/6">{currentMovie?.overview}</p>
+              <p className="w-5/6 sm:!inline hidden" >{currentMovie?.overview}</p>
+              <p className="w-5/6 sm:!hidden inline" >{(currentMovie?.overview).slice(0,145) }</p>
               <div className="flex flex-col space-y-3 text-sm">
                 <div>
                   <span className="text-[gray]">Original language:</span>{" "}

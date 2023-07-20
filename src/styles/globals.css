@@ -29,7 +29,11 @@
     }
     .modalButton
     {
-        @apply flex h-11 w-11   items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10 ;
+        @apply flex md:h-11 md:w-11  h-8 w-8    items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10 ;
+    }
+    .mobile 
+    {
+        @apply: md:h-7 md:w-7   h-5 w-5
     }
     .modalButton1
     {

@@ -23,7 +23,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <header className={`${scrolled && "bg-[#000000]/50"}`}>
+    <header className={`${scrolled && "md:bg-[#000000]/50 bg-[#000000]/90"}`}>
       <div className="flex item-center  space-x-2  md:space-x-10">
         <Image
           src={"/logo.svg"}

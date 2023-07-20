@@ -42,7 +42,7 @@ export default function Home({
         <link rel="icon" href="/logo.svg " />
       </Head>
       <Header />
-      <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
+      <main className="relative pl-4 pb-10 md:pb-24 lg:space-y-24 lg:pl-16">
         <Hero tranding={tranding} />
         <section>
           <Row title="Top Rated" movies={topRated} />
@@ -50,7 +50,7 @@ export default function Home({
           <Row title="Popuar" movies={popular} />
           <Row title="Cartoon" movies={cartoon} isBig={true} />
           <Row title="Horor" movies={horor} />
-          <Row title="" movies={horor} />
+      
           {list.length?<Row title="My List" movies={list}  />:null}
          
         </section>

@@ -33,7 +33,7 @@ email:yup.string().email().required('Email is requried'),
 password:yup.string().min(6,"6 minium charter").required('password is requried')
   })
   return (
-    <div className=" relative flex h-screen w-screen flex-col items-center md:justify-center bg-black  md:bg-transparent">
+    <div className=" relative flex h-screen w-screen flex-col items-center  md:justify-center  md:bg-transparent">
       <Head>
         <title>Auth</title>
         <meta
@@ -47,20 +47,26 @@ password:yup.string().min(6,"6 minium charter").required('password is requried')
         src={"https://rb.gy/p2hphi"}
         alt={"bg"}
         fill
-        className="object-cover -z-10 !hidden sm:!inline opacity-60"
+        className="object-cover hidden sm:inline -z-10  opacity-60"
+      />
+         <Image
+        src={"https://rb.gy/p2hphi"}
+        alt={"bg"}
+        fill
+        className="object-cover md:hidden -z-10 opacity-20"
       />
       <Image
         src={"/logo.svg"}
         alt={"logo"}
         width={70}
         height={70}
-        className=" absolute left-4 top-4 cursor-pointer object-contain"
+        className=" absolute left-4 top-4  sm:!inline cursor-pointer object-contain"
       />
       <div className=" p-5 relative mt-24 space-y-8 rounded md:mx-14 w-full bg-black/75 py-10 md:mt-0 md:max-w-md ">
         <Formik initialValues={{ email:'', password: '' }} onSubmit={onSubmit} validationSchema={validation}>
           <Form className=" space-y-4">
         <h1 className=" text-4xl font-semibold py-4">
-          {auth === "signin" ? "Sign Up" : "Sign In"}
+          {auth === "signin" ? "Sign In":"Sign Up"}
         </h1>
        {error && <p className="text-red-500 font-semibold text-center ">{error}</p>}
             <div className="space-y-4  ">
@@ -90,7 +96,8 @@ password:yup.string().min(6,"6 minium charter").required('password is requried')
               className=" text-white hover:underline"
               onClick={() => toggleAuth("signup")}
             >
-              Sign In
+                Sign Up Now
+           
             </button>
           </div>
         ) : (
@@ -101,7 +108,7 @@ password:yup.string().min(6,"6 minium charter").required('password is requried')
               className=" text-white hover:underline"
               onClick={() => toggleAuth("signin")}
             >
-              Sign Up Now
+               Sign In
             </button>
           </div>
         )}
