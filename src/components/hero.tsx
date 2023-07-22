@@ -25,7 +25,7 @@ const Hero = ({ tranding }: HeroProps): JSX.Element => {
 
   return (
     <div className="flex flex-col space-y-3 py-20  md:space-y-4 lg:h-[65vh] lg:pb-12 lg:center">
-      <div className="absolute top-0 left-0 h-[55vh]  md:h-[95vh] -z-10 w-full">
+      <div className="absolute top-0 left-0 h-[300px]  md:h-[95vh] -z-10 w-full">
         <Image
           src={`${image_base}${movie?.backdrop_path || movie?.poster_path}`}
           alt={movie?.title}

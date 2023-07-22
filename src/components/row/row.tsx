@@ -28,17 +28,17 @@ const Row = ({ title, movies, isBig=false }: RowProps): JSX.Element => {
         {title}
       </h2>
       {/* {} */}
-      <div className=" group relative -ml-2 md:ml-2:">
+      <div className=" group relative -ml-3  md:ml-2:">
         <AiOutlineArrowLeft
           onClick={() => handleClick("left")}
           className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-6 w-6 cursor-pointer opacity-0 group-hover:opacity-100 transi duration-200 scale-125 /*false*/ ${
-            !moved && "hidden"
+            !moved && "hidden "
           }`}
         />
 
         <div
           ref={caruselRef}
-          className={`flex scrollbar-hide space-x-3 md:space-x-0 items-center ${!isBig && ' space-x-3 md:space-x-4'} overflow-hidden `}
+          className={`flex scrollbar-hide space-x-3 md:space-x-0 items-center ${!isBig && ' space-x-3 md:space-x-4'} md:overflow-hidden overflow-auto`}
         >
           {movies.map((movie) => (
             <Thumbnull key={movie.id} movie={movie} isBig={isBig} />
