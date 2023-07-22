@@ -33,7 +33,7 @@ email:yup.string().email().required('Email is requried'),
 password:yup.string().min(6,"6 minium charter").required('password is requried')
   })
   return (
-    <div className=" relative flex h-screen w-screen flex-col items-center  md:justify-center  md:bg-transparent">
+    <div className=" relative flex scrollbar-hide  overflow-auto h-screen w-screen flex-col items-center  md:justify-center  md:bg-transparent">
       <Head>
         <title>Auth</title>
         <meta
@@ -60,9 +60,9 @@ password:yup.string().min(6,"6 minium charter").required('password is requried')
         alt={"logo"}
         width={70}
         height={70}
-        className=" absolute left-4 top-4  sm:!inline cursor-pointer object-contain"
+        className=" absolute left-4 top-4   sm:!hidden block cursor-pointer object-contain"
       />
-      <div className=" p-5 relative mt-24 space-y-8 rounded md:mx-14 w-full bg-black/75 pt-[40px] md:py-10 md:mt-0 md:max-w-md ">
+      <div className=" p-5 relative mt-28 space-y-8 rounded md:mx-14 w-full bg-black/75 py-10 md:mt-0 md:max-w-md ">
         <Formik initialValues={{ email:'', password: '' }} onSubmit={onSubmit} validationSchema={validation}>
           <Form className=" space-y-4">
         <h1 className=" text-4xl font-semibold py-4">
